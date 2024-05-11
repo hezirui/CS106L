@@ -18,9 +18,9 @@
 #include <algorithm>
 
 // STUDENT TODO: add paths
-std::string COURSES_OFFERED_CSV_PATH = "D:\\Projects\\ClionProjects\\CS106L\\MyAssignment\\Assignment1_simple_enroll\\student_output\\courses_offered.csv";
+std::string COURSES_OFFERED_CSV_PATH = "C:\\Users\\admin\\CLionProjects\\CS106L\\MyAssignment\\Assignment1_simple_enroll\\student_output\\courses_offered.csv";
 
-std::string COURSES_NOT_OFFERED_CSV_PATH = "D:\\Projects\\ClionProjects\\CS106L\\MyAssignment\\Assignment1_simple_enroll\\student_output\\courses_not_offered.csv";
+std::string COURSES_NOT_OFFERED_CSV_PATH = "C:\\Users\\admin\\CLionProjects\\CS106L\\MyAssignment\\Assignment1_simple_enroll\\student_output\\courses_not_offered.csv";
 
 struct Course {
   std::string title;
@@ -85,21 +85,15 @@ void write_courses_offered(std::vector<Course> &vector_of_courses) {
   if(!ofs.is_open()){
       std::cout << "file open fialed：" << COURSES_OFFERED_CSV_PATH << std::endl;
   }
-//  for(auto iter = vector_of_courses.begin();iter != vector_of_courses.end();iter++){
-//      auto course = *iter;
-//      if(course.quarter != "null" ){
-//          ofs << course.title << ',' << course.number_of_units << ',' << course.quarter << '\n';
-//          delete_elem_from_vector(vector_of_courses,course);
-//      }
-//  }
-  int sum = vector_of_courses.size();
-  for(int i = 0;i < sum;i++){
-      auto &course = vector_of_courses[i];
+
+  for(auto iter = vector_of_courses.begin();iter != vector_of_courses.end();){
+      auto &course = *iter;
       if(course.quarter != "null"){
           ofs << course.title << ',' << course.number_of_units << ',' << course.quarter << '\n';
-          delete_elem_from_vector(vector_of_courses,course);
-          sum--;
-          i--;
+          iter = vector_of_courses.erase(iter);
+      }
+      else{
+          iter++;
       }
   }
   ofs.close();

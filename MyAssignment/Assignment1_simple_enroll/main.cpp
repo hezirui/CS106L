@@ -9,7 +9,7 @@
 #include <system_error>
 #include <vector>
 
-std::string COURSES_PATH = "D:\\Projects\\ClionProjects\\CS106L\\MyAssignment\\Assignment1_simple_enroll\\courses.csv";
+std::string COURSES_PATH = "C:\\Users\\admin\\CLionProjects\\CS106L\\MyAssignment\\Assignment1_simple_enroll\\courses.csv";
 
 bool structTest() {
   Course c{"Standard C++ Programming", "1", "2023-2024 Winter"};
