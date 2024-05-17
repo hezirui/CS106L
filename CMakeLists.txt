@@ -26,4 +26,8 @@ add_executable(CS106L
 #        LessonCodes/Lecture15.cpp
 #        LessonCodes/Lecture16.cpp
         LessonCodes/Lecture17.cpp
+        MyLessonCodes/Shape.cpp
+        MyLessonCodes/Shape.h
+        MyLessonCodes/Circle.cpp
+        MyLessonCodes/Circle.h
 )
