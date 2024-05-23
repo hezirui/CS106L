@@ -26,11 +26,13 @@ public:
         }
     }
 
-    Array(Array &&other)  noexcept : size_(other.size_), data_(other.data_)
+    Array(Array &&other)  noexcept : size_(other.size_), data_((other.data_))
     {
         // 因为现在这个对象指向了other原来内存的内容，如果不清除other的指针，那么other析构时，会把data_也清除
         // 因为是std::move，返回右值引用
-        other.data_ = nullptr;
+        //other.data_ = nullptr;
+        data_ = std::move(other.data_);
+        std::cout<<other.data_<<std::endl;
     }
 
     Array &operator=(Array &&other) noexcept
@@ -79,30 +81,30 @@ void swap(T a, T b)
 
 int main()
 {
-//    Array a(int(1e8));
-//    for (int i = 0; i < a.size_; ++i)
-//    {
-//        a.data_[i] = rand();
-//    }
-//
-//    auto start1 = std::chrono::high_resolution_clock::now();
-//    Array b(a);
-//    auto end1 = std::chrono::high_resolution_clock::now();
-//    auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(end1 - start1);
-//
-//    auto start2 = std::chrono::high_resolution_clock::now();
-//    Array c(std::move(a));
-//    auto end2 = std::chrono::high_resolution_clock::now();
-//    auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2);
-//
-//    std::cout << "Copy construction took " << duration1.count() << " microseconds\n";
-//    std::cout << "Move construction took " << duration2.count() << " microseconds\n";
-//
-//    test(b, c);
-//    cout << "Move constructor equals copy constructor, move correct!" << endl;
-    int a = 1;
-    int b = std::move(a);
-    b = 2;
-    cout << a;
-    return 0;
+    Array a(int(1e8));
+    for (int i = 0; i < a.size_; ++i)
+    {
+        a.data_[i] = rand();
+    }
+
+    auto start1 = std::chrono::high_resolution_clock::now();
+    Array b(a);
+    auto end1 = std::chrono::high_resolution_clock::now();
+    auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(end1 - start1);
+
+    auto start2 = std::chrono::high_resolution_clock::now();
+    Array c(std::move(a));
+    auto end2 = std::chrono::high_resolution_clock::now();
+    auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2);
+
+    std::cout << "Copy construction took " << duration1.count() << " microseconds\n";
+    std::cout << "Move construction took " << duration2.count() << " microseconds\n";
+
+    test(b, c);
+    cout << "Move constructor equals copy constructor, move correct!" << endl;
+//    int a = 1;
+//    int b = std::move(a);
+//    b = 2;
+//    cout << a;
+//    return 0;
 }
