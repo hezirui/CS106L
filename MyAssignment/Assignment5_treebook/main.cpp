@@ -3,7 +3,8 @@
 
 // TODO: Implement the non-member function + operator overload here!
 void operator+(User& a,User& b) {
-
+    a.setFriend(b);
+    b.setFriend(a);
 }
 
 
@@ -14,6 +15,7 @@ void printFriends(const User& user) {
     }
 }
 
+
 int main() {
     // create a bunch of users
     User alice("Alice");
@@ -22,11 +24,11 @@ int main() {
     User dave("Dave");
 
     // make them friends
-    alice = alice + bob;
-    alice = alice + charlie;
-
-    dave = dave + bob;
-    charlie = charlie + dave;
+//    alice = alice + bob;
+//    alice = alice + charlie;
+//
+//    dave = dave + bob;
+//    charlie = charlie + dave;
 
 
     // print out their friends

@@ -26,8 +26,6 @@ User& User::operator=(User &&user) noexcept{
     return *this;
 }
 
-void
-
 
 std::string User::getName() const {
     return name;
@@ -39,6 +37,14 @@ std::set<User> User::getFriends() const {
 
 void User::setName(std::string name) {
     this->name = name;
+}
+
+bool User::operator < (const User &user) {
+    return this->name < user.name;
+}
+
+void User::setFriend(User user) {
+    this->friends.insert(user);
 }
 
 // TODO: Implement the < operator overload here!

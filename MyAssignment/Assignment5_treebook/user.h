@@ -8,15 +8,13 @@ public:
 
     User(std::string name);
 
-    User(User& user) = delete;
+//    User(User& user) = delete;
+//
+//    User& operator=(User& user) = delete;
 
-    User& operator=(User& user) = delete;
+    User(User&& user) noexcept;
 
-    User(User&& user);
-
-    User& operator=(User&& user);
-
-    void addFriend(User& user);
+    User& operator=(User&& user) noexcept;
 
     // getter functions
     std::string getName() const;
@@ -25,8 +23,10 @@ public:
     // setter functions
     void setName(std::string name);
 
+
     // TODO: add the < operator overload here!
-    
+    bool operator < (const User &user) ;
+    void setFriend(User user);
 private:
     std::string name;
     std::set<User> friends;
