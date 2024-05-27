@@ -30,4 +30,5 @@ add_executable(CS106L
         MyLessonCodes/Shape.h
         MyLessonCodes/Circle.cpp
         MyLessonCodes/Circle.h
+        #MyAssignment/Assignment3_make_class/class.h
 )
